@@ -1,2 +1,2 @@
 # juc-learn
-juc learn exercise by huncker
+juc learn exercise by huncker 
