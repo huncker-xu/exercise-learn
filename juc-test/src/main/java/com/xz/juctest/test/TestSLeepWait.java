@@ -4,7 +4,7 @@ import com.xz.juctest.utils.Sleeper;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j(topic = "c.Test19")
-public class Test19 {
+public class TestSLeepWait {
     static final Object lock = new Object();
 
     public static void main(String[] args) {
