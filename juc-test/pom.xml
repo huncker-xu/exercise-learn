@@ -48,6 +48,11 @@
             <artifactId>lombok</artifactId>
             <version>1.18.22</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.openjdk.jol</groupId>-->
+<!--            <artifactId>jol-core</artifactId>-->
+<!--            <version>0.10-TEST</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
