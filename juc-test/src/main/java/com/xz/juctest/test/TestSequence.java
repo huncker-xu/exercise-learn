@@ -3,6 +3,7 @@ package com.xz.juctest.test;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -68,8 +69,19 @@ public class TestSequence {
             }
 
         }, "t4");
-        t3.start();
-        t4.start();
+        //t3.start();
+        //t4.start();
+
+        Thread t5 = new Thread(() -> {
+            LockSupport.park();
+            log.debug("1");
+        }, "t5");
+        Thread t6 = new Thread(() -> {
+            log.debug("2");
+            LockSupport.unpark(t5);
+        }, "t6");
+        t5.start();
+        t6.start();
 
     }
 }
