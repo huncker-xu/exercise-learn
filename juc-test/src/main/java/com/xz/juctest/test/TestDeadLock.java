@@ -3,6 +3,8 @@ package com.xz.juctest.test;
 import com.xz.juctest.utils.Sleeper;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 @Slf4j
 public class TestDeadLock {
     public static void main(String[] args) {
@@ -33,10 +35,22 @@ class Philosoper extends Thread{
     @Override
     public void run() {
         while (true){
-            synchronized (left){
-                synchronized (right){
-                    eat();
-                }
+            //尝试获取右手筷子
+            if(left.tryLock()){
+             try {
+                 //尝试获取左手筷子
+                 if(right.tryLock()){
+                     try {
+                         eat();
+                     }finally {
+                         //释放右手锁
+                         right.unlock();
+                     }
+                 }
+             }finally {
+                 //释放左手锁
+                 left.unlock();
+             }
             }
         }
     }
@@ -46,7 +60,7 @@ class Philosoper extends Thread{
         Sleeper.sleep(1);
     }
 }
-class Chopstick{
+class Chopstick extends ReentrantLock {
     String name;
 
     public Chopstick(String name) {
