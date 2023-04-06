@@ -20,7 +20,7 @@ import java.util.concurrent.locks.ReentrantLock;
 @Slf4j(topic = "c.TestPool2")
 public class TestPool2 {
     public static void main(String[] args) {
-        ThreadPool threadPool = new ThreadPool(1,
+         ThreadPool threadPool = new ThreadPool(1,
                 1000, TimeUnit.MILLISECONDS, 1,((queue, task) -> {
             //1.死等
             //queue.put(task);
@@ -115,7 +115,7 @@ class ThreadPool{
             //2.当task执行完毕时，再接着从任务队列中获取任务并执行
 //            while (task != null || (task =taskQueue.take()) != null){
             while (task != null || (task =taskQueue.poll(timeout,timeUnit)) != null){
-                    try {
+                try {
                     log.debug("正在执行....{}",task);
                     task.run();
                 }catch (Exception e){
@@ -135,7 +135,7 @@ class ThreadPool{
 @Slf4j(topic = "c.TestPool2")
 class BlockingQueue<T>{
     //1.任务队列
-    private Deque<T> queue = new ArrayDeque<>();
+    private Deque<T> queue = new ArrayDeque<>() ;
 
     //2.锁
     private ReentrantLock lock = new ReentrantLock();
@@ -157,6 +157,7 @@ class BlockingQueue<T>{
     public T poll(long timeout, TimeUnit unit){
         lock.lock();
         try {
+            //将超时时间统一转换为 纳秒
             long nanos = unit.toNanos(timeout);
             while (queue.isEmpty()){
                 try {
