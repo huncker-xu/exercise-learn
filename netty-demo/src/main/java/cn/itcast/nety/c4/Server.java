@@ -35,7 +35,7 @@ public class Server {
                 channel.read(buffer);//阻塞方法
                 buffer.flip();//读模式
                 ByteBufferUtil.debugRead(buffer);
-                buffer.clear();
+                buffer.clear();//写模式
                 System.out.println("after read..."+channel);
             }
         }
