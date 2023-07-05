@@ -1,6 +1,6 @@
 package cn.itcast.nety.c4;
 
-import cn.itcast.nety.c1.utils.ByteBufferUtil;
+import cn.itcast.nety.utils.ByteBufferUtil;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

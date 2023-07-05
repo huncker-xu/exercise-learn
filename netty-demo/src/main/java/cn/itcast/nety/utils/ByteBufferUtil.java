@@ -1,10 +1,9 @@
-package cn.itcast.nety.c1.utils;
+package cn.itcast.nety.utils;
 
 import java.nio.ByteBuffer;
 
 import io.netty.util.internal.MathUtil;
 import io.netty.util.internal.StringUtil;
-import io.netty.util.internal.MathUtil.*;
 
 
 /**

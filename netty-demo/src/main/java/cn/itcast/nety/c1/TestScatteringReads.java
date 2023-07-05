@@ -1,12 +1,10 @@
 package cn.itcast.nety.c1;
 
-import cn.itcast.nety.c1.utils.ByteBufferUtil;
+import cn.itcast.nety.utils.ByteBufferUtil;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
-import java.nio.channels.Channel;
 import java.nio.channels.FileChannel;
 
 /**
